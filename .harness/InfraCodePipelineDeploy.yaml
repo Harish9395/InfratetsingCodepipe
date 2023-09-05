@@ -32,7 +32,7 @@ pipeline:
                   identifier: CompressFile
                   spec:
                     shell: Sh
-                    command: "zip -r Core/Lambda.zip Core/Lambda.yaml \r\npwd\r\nls"
+                    command: "zip -r Core/Lambda.zip Core/Lambda.yaml \r\ncd /harness/Core"
               - step:
                   type: Run
                   name: UploadArtifacttS3
