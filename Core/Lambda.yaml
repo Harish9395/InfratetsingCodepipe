@@ -1,0 +1,50 @@
+--- 
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Cloudformation template to create Lambda 
+Parameters: 
+  S3bucketname: 
+    Type: String 
+    Default: lambdacodezip123
+  S3lambdaKey: 
+    Type: String
+    Default: lambda.zip 
+
+  LambdaFunctionName:
+    Type: String 
+    Default: lambdafunctioncodetest1 
+  LambdaFunctionHandler: 
+    Type: String 
+    Default: test_index.handler 
+  
+  # LambdaFunctionName1:
+  #   Type: String 
+  #   Default: lambdafunctioncodetest2
+  # LambdaFunctionHandler1: 
+  #   Type: String 
+  #   Default: index.handler
+  
+Resources:
+  LambdaFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Handler: !Ref LambdaFunctionHandler
+      Runtime: nodejs14.x
+      Role: 'arn:aws:iam::938152492896:role/lambdas3role'
+      MemorySize: 1024
+      Code:
+        S3Bucket: !Ref S3bucketname
+        S3Key: !Ref S3lambdaKey
+  
+  # LambdaFunction1:
+  #   Type: 'AWS::Lambda::Function'
+  #   Properties:
+  #     FunctionName: !Ref LambdaFunctionName1
+  #     Handler: !Ref LambdaFunctionHandler1
+  #     Runtime: nodejs14.x
+  #     Role: 'arn:aws:iam::938152492896:role/lambdas3role'
+  #     MemorySize: 1024
+  #     Code:
+  #       S3Bucket: !Ref S3bucketname
+  #       S3Key: !Ref S3lambdaKey
+
