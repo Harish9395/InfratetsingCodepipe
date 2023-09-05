@@ -32,4 +32,4 @@ pipeline:
                   identifier: CompressFile
                   spec:
                     shell: Sh
-                    command: zipr -r Core.zip Core/
+                    command: zip -r Core.zip Core/
