@@ -120,7 +120,7 @@ Resources:
                   RoleArn: "arn:aws:iam::938152492896:role/CloudformationRole"
                   StackName: CodepipelineCreateStackInfraLambda
                   ChangeSetName: codepipelineCreatechangeset1
-                  TemplatePath: !Sub "InfraCfnSource::Lambda.yaml" 
+                  TemplatePath: !Sub "InfraCfnSource::Core/Lambda.yaml" 
                 OutputArtifacts:
                   - Name: LambdaChangeSet
                 RunOrder: 2 
