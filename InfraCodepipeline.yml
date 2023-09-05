@@ -4,7 +4,10 @@ Description: Codepipeline for Infra creation
 Parameters: 
   S3Bucketname: 
     Type: String 
-    Default: testingcodepipelinelambdartifact
+    Default: testingcodepipelinelambdartifact  
+  S3BucketObjectKey: 
+    Type: String 
+    Default: Core.zip
 
 Resources: 
   ArtifactS3bucket: 
@@ -82,7 +85,7 @@ Resources:
   DeployPipeline: 
     Type: AWS::CodePipeline::Pipeline 
     Properties: 
-      Name: DepolyInfraCodepipeline
+      Name: DepolyInfraCodepipeline12
       RoleArn: "arn:aws:iam::938152492896:role/service-role/AWSCodePipelineServiceRole-us-east-2-testingpipeline"
       ArtifactStore: 
         Type: S3 
@@ -98,7 +101,7 @@ Resources:
                   Version: "1" 
                 Configuration: 
                   S3Bucket: "infratests3bucket123"
-                  S3ObjectKey: "Lambda.zip" 
+                  S3ObjectKey: !Ref S3BucketObjectKey
                   PollForSourceChanges: "false"
                 OutputArtifacts: 
                   - Name: InfraCfnSource 
