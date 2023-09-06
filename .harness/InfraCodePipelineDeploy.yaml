@@ -78,7 +78,13 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: aws codepipeline start-pipeline-execution --name DeployCodepipelinetesting
+                        script: |-
+                          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                          unzip awscliv2.zip 
+                          sudo ./aws/install
+                          aws configure set aws_access_key_id <+pipeline.variables.Accesskey>
+                          aws configure set aws_secret_access_key <+pipeline.variables.Secretkey>
+                          aws codepipeline start-pipeline-execution --name DeployCodepipelinetesting
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
