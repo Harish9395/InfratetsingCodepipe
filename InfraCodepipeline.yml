@@ -4,7 +4,7 @@ Description: Codepipeline for Infra creation
 Parameters: 
   S3Bucketname: 
     Type: String 
-    Default: testingcodepipelinelambdartifact  
+    Default: testingcodepipelineArtifactStore 
   S3BucketObjectKey: 
     Type: String 
     Default: core.zip
@@ -180,7 +180,7 @@ Resources:
                   ChangeSetName: codepipelineCreateSNSchangeSet
                   RoleArn: "arn:aws:iam::938152492896:role/CloudformationRole"
                   StackName: CodepipelineCreateStackInfraSNS
-                  OutputFileName: "LambdaOutput.json"
+                  OutputFileName: "SNSOutput.json"
                 OutputArtifacts:
                   - Name: SNSOutput
                 RunOrder: 2
