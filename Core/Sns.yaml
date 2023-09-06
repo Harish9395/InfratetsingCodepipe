@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Cloudformation template to create SNS
+Parameters:
+  SNSTopicname:
+    Type: String
+    Default: SNSTopictestingcodepipeline
+Resources:
+  SNSTopic1:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      DisplayName: !Ref SNSTopicname
+      Subscription:
+        - Protocol: email
+          Endpoint: harish.devops2195@gmail.com
+  SNStesingSubscription:
+    DependsOn:
+      - SNSTopic1
+    Type: 'AWS::SNS::Subscription'
+    Properties:
+      TopicArn: !Ref SNSTopic1
+      Protocol: lambda
+      Endpoint: 'arn:aws:lambda:us-east-2:938152492896:function:lambdafunctioncodetest1'
