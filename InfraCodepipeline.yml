@@ -4,7 +4,7 @@ Description: Codepipeline for Infra creation
 Parameters: 
   S3Bucketname: 
     Type: String 
-    Default: testingcodepipelineArtifactStore 
+    Default: testingcodepipelineartifactstore 
   S3BucketObjectKey: 
     Type: String 
     Default: core.zip
