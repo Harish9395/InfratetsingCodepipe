@@ -32,7 +32,7 @@ pipeline:
                   identifier: CompressFile
                   spec:
                     shell: Sh
-                    command: zip -r core.zip Core/
+                    command: zip -9 core.zip Core/
               - step:
                   type: Run
                   name: UploadArtifacttS3
