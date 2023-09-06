@@ -68,6 +68,20 @@ pipeline:
                           templateUrl: https://infratests3bucket123.s3.us-east-2.amazonaws.com/InfraCodepipeline.yml
                       roleArn: ""
                   timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: StartPipelineExecution
+                  identifier: StartPipelineExecution
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: aws codepipeline start-pipeline-execution --name DeployCodepipelinetesting
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
         tags: {}
   variables:
     - name: Accesskey
