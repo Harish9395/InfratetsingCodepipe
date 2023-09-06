@@ -44,51 +44,14 @@ pipeline:
                       aws configure set aws_secret_access_key <+pipeline.variables.Secretkey>
                       aws s3 cp core.zip s3://infratests3bucket123/core.zip
                       aws s3 cp InfraCodepipeline.yml s3://infratests3bucket123/
-    - stage:
-        name: deployStack
-        identifier: deployStack
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
               - step:
-                  type: CreateStack
-                  name: CreateStack_1
-                  identifier: CreateStack_1
+                  type: Run
+                  name: CreateStack
+                  identifier: CreateStack
                   spec:
-                    provisionerIdentifier: CreateCodePipeline
-                    configuration:
-                      stackName: DeployCodepipelinetesting
-                      connectorRef: Aws
-                      region: us-east-2
-                      templateFile:
-                        type: S3URL
-                        spec:
-                          templateUrl: https://infratests3bucket123.s3.us-east-2.amazonaws.com/InfraCodepipeline.yml
-                      roleArn: ""
-                  timeout: 10m
-              - step:
-                  type: ShellScript
-                  name: StartPipelineExecution
-                  identifier: StartPipelineExecution
-                  spec:
-                    shell: Bash
-                    onDelegate: true
-                    source:
-                      type: Inline
-                      spec:
-                        script: |-
-                          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                          unzip awscliv2.zip 
-                          sudo ./aws/install
-                          aws configure set aws_access_key_id <+pipeline.variables.Accesskey>
-                          aws configure set aws_secret_access_key <+pipeline.variables.Secretkey>
-                          aws codepipeline start-pipeline-execution --name DeployCodepipelinetesting
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-        tags: {}
+                    shell: Sh
+                    command: |
+                      aws cloudformation deploy --template-file https://infratests3bucket123.s3.us-east-2.amazonaws.com/InfraCodepipeline.yml --stack-name InfraCodepipelineDeploy 
   variables:
     - name: Accesskey
       type: Secret
