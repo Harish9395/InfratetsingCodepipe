@@ -16,12 +16,12 @@ Parameters:
     Type: String 
     Default: test_index.handler 
   
-  # LambdaFunctionName1:
-  #   Type: String 
-  #   Default: lambdafunctioncodetest2
-  # LambdaFunctionHandler1: 
-  #   Type: String 
-  #   Default: index.handler
+  LambdaFunctionName1:
+    Type: String 
+    Default: lambdafunctioncodetest2
+  LambdaFunctionHandler1: 
+    Type: String 
+    Default: index.handler
   
 Resources:
   LambdaFunction:
@@ -36,15 +36,14 @@ Resources:
         S3Bucket: !Ref S3bucketname
         S3Key: !Ref S3lambdaKey
   
-  # LambdaFunction1:
-  #   Type: 'AWS::Lambda::Function'
-  #   Properties:
-  #     FunctionName: !Ref LambdaFunctionName1
-  #     Handler: !Ref LambdaFunctionHandler1
-  #     Runtime: nodejs14.x
-  #     Role: 'arn:aws:iam::938152492896:role/lambdas3role'
-  #     MemorySize: 1024
-  #     Code:
-  #       S3Bucket: !Ref S3bucketname
-  #       S3Key: !Ref S3lambdaKey
-
+  LambdaFunction1:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      FunctionName: !Ref LambdaFunctionName1
+      Handler: !Ref LambdaFunctionHandler1
+      Runtime: nodejs14.x
+      Role: 'arn:aws:iam::938152492896:role/lambdas3role'
+      MemorySize: 1024
+      Code:
+        S3Bucket: !Ref S3bucketname
+        S3Key: !Ref S3lambdaKey
